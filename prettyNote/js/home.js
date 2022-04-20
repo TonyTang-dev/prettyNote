@@ -19,7 +19,7 @@ var wordCountdom = $(".word-count");
 $(document).ready(function(){
     /* 设置顶层面板右下角时间 */
     var date = new Date();
-    $('#curTime').text(date.getFullYear()+"年"+date.getMonth()+"月"+date.getDate()+"日");
+    $('#curTime').text(date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日");
 
     // 由于设置CSS之后原先的设计失效，故动态添加悬浮指针效果
 	$cur_tag = $("#markLayer");
@@ -159,7 +159,7 @@ function exportFile(){
     var doc=new jspdf.jsPDF(options);
 
     var splitTitle = doc.splitTextToSize(editInput.val(), 780);
-    doc.setFont("微软雅黑");
+    doc.setFont("simkai","normal");
     doc.setFontSize(12);
     doc.text(30, 30, splitTitle);
 

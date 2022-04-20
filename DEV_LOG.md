@@ -5,6 +5,16 @@
 
 ## 开发日志
 
+0420:
+
+1、添加日期配置，优化界面配置，界面主题配置
+
+2、引入jsPDF.js，当前存在bug，如生成pdf中文乱码的问题暂未解决
+
+![](resultImg/0420home.png)
+
+![](resultImg/0420home2.png)
+
 0418:
 
 ![](resultImg/0418main.png)
