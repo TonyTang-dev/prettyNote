@@ -149,9 +149,19 @@ function synchronize(){
 
 /* 用户点击导出 */
 function exportFile(){
-    var doc=new jspdf.jsPDF('p','pt');
+    // pdf格式
+    var options = {
+        orientation: 'p',
+        unit: 'pt',
+        format: [594.3,840.51]
+    }
+    // 文档实例
+    var doc=new jspdf.jsPDF(options);
+
+    var splitTitle = doc.splitTextToSize(editInput.val(), 780);
+    doc.setFont("微软雅黑");
     doc.setFontSize(12);
-    doc.text(10,10,editInput.val());
+    doc.text(30, 30, splitTitle);
 
     doc.save("test.pdf");
 }
