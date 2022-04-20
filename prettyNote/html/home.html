@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<script type="text/javascript">
+		// const electron = window.require("electron");
+		// // 重命名 Electron 提供的 require
+		// window.nodeRequire = require;
+		delete window.require;
+		delete window.exports;
+		delete window.module;
+	</script>
+	<!-- <script src='../public/renderer.js'></script> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 这是为了能正常使用jquery.js又要兼容node.js，所以对冲突关键字进行重命名 -->
+	
+    <link rel="stylesheet" href="../frame/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../frame/bootstrap/css/bootstrap-table.min.css" />
+	<link rel="stylesheet" href="../frame/bootstrap/css/bootstrap-theme.min.css" />
+	<link rel="stylesheet" href="../css/home.css" />
+	<title>note studio</title>
+</head>
+<body>
+    <div class="content" style="width:100%;height:100%;">
+		<div class="volume">
+			<div class="item bottom-panel">
+				<!-- 顶部菜单 -->
+				<div class="top-menu">
+					<div class="menu-wrap bottom-menu">
+						<div class="left-wrap">
+							<span onclick="recovery()" class="home-btn">
+								<span class="glyphicon glyphicon-user"></span>
+								<span>小札记</span>
+							</span>
+							<span>编辑</span>
+							<span>窗口</span>
+							<span>关于</span>
+						</div>
+						<div class="fill-wrap">
+							<font>Note 小札记1.0.0</font>
+						</div>
+						<div class="right-wrap">
+							<!-- 最大化、最小化及关闭按钮 -->
+							<span class="glyphicon glyphicon-minus" onclick="operAPP(1)"></span>
+							<span class="tips min">最小化</span>
+							<span class="glyphicon glyphicon-unchecked" onclick="operAPP(2)"></span>
+							<span class="tips max">最大化</span>
+							<span class="glyphicon glyphicon-remove" onclick="operAPP(3)"></span>
+							<span class="tips shutdown">关闭应用</span>
+						</div>
+					</div>
+				</div>
+				<!-- 左侧菜单 -->
+				<div class="left-menu-wrap">
+					<div class="secondary-menu-wrap">
+						<div class="item-menu-wrap">
+							<span class="icon-left-item glyphicon glyphicon-home"></span>
+							<span class="icon-name">主页</span>
+						</div>
+						<div class="item-menu-wrap" onclick="exportFile()">
+							<span class="icon-left-item glyphicon glyphicon-log-out" style="color: cornflowerblue;"></span>
+							<span class="icon-name">导出</span>
+						</div>
+						<div class="item-menu-wrap">
+							<span class="icon-left-item glyphicon glyphicon-edit" style="color: darkslateblue;"></span>
+							<span class="icon-name">编辑</span>
+						</div>
+						<div class="item-menu-wrap">
+							<span class="icon-left-item glyphicon glyphicon-cog" style="color: gold;"></span>
+							<span class="icon-name">设置</span>
+						</div>
+						<div class="item-menu-wrap">
+							<span class="icon-left-item glyphicon glyphicon-question-sign" style="color: cornflowerblue;"></span>
+							<span class="icon-name">帮助</span>
+						</div>
+						<div class="item-menu-wrap">
+							<span class="icon-left-item glyphicon glyphicon-tasks"></span>
+							<span class="icon-name">关于</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="operation-panel" style="width: calc(100% - 70px);height: 30%;">
+					<div class="show-top-container" style="width: 100%;height: 100%;
+							display: flex;flex-direction: row;overflow: hidden;">
+						<!-- 轮播图 -->
+						<div class="banner" style="height: 100%;width:500px;user-select: none;border-radius: 10px;">
+							<div id="myCarousel" data-ride="carousel" class="carousel slide" style="width:100%;height:100%;border-radius: 10px;">
+								<!-- 轮播（Carousel）指标 -->
+								<!-- <ol class="carousel-indicators">
+									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+									<li data-target="#myCarousel" data-slide-to="1"></li>
+									<li data-target="#myCarousel" data-slide-to="2"></li>
+								</ol>    -->
+								<!-- 轮播（Carousel）项目 -->
+								<div class="carousel-inner" style="height:100%;user-select: none;border-radius: 10px;">
+									<div class="item active" style="height: 100%;">
+										<img src="../img/banner.png" style="height: 100%;" alt="First slide">
+										<div class="carousel-caption">一蓑烟雨任平生</div>
+									</div>
+									<div class="item" style="width:100%;height: 100%;">
+										<img src="../img/banner.png" style="height: 100%;" alt="Second slide">
+										<div class="carousel-caption">仰天大笑出门去</div>
+									</div>
+									<div class="item" style="width:100%;height: 100%;">
+										<img src="../img/banner.png" style="height: 100%;" alt="Third slide">
+										<div class="carousel-caption">我辈岂是蓬蒿人</div>
+									</div>
+								</div>
+								<!-- 轮播（Carousel）导航 -->
+								<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+						</div>
+						<!-- 版本介绍 -->
+						<div class="version-vessel" style="flex: 1;height: 100%;display: flex;
+								flex-direction: row;align-items: center;justify-content: space-between;padding: 0 50px 0 50px;">
+							<div class="profile-vessel" style="flex: 1;height: 90%;background-color: rgba(0, 0, 0, 0.6);border-radius: 10px;margin-right: 50px;">
+								<ul>
+									<li>应用：小札记(prettyNote)</li>
+									<li>版本号：v1.0.0</li>
+								</ul>
+							</div>
+							<div class="profile-vessel" style="flex: 1;height: 90%;background-color: rgba(0, 0, 0, 0.6);border-radius: 10px;">
+								<ul>
+									<li>作者：Tang</li>
+									<li>联系方式：3538182550@qq.com</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div style="width: 100%;height: 1px;background-color: rgba(0, 0, 0, 0.6);"></div>
+				</div>
+			</div>
+			<div class="item trans">
+				<div id="markLayer" onclick="recovery()"></div>
+				<!-- 顶部菜单 -->
+				<div class="top-menu">
+					<div class="menu-wrap">
+						<div class="left-wrap">
+							<span onclick="clickButton()" class="home-btn">
+								<span class="glyphicon glyphicon-user"></span>
+								<span>小札记</span>
+							</span>
+							<span>编辑</span>
+							<span>窗口</span>
+							<span>关于</span>
+						</div>
+						<div class="fill-wrap">
+							<font>Note 小札记1.0.0</font>
+						</div>
+						<div class="right-wrap">
+							<!-- 最大化、最小化及关闭按钮 -->
+							<span class="glyphicon glyphicon-minus" onclick="operAPP(1)"></span>
+							<span class="tips min">最小化</span>
+							<span class="glyphicon glyphicon-unchecked" onclick="operAPP(2)"></span>
+							<span class="tips max">最大化</span>
+							<span class="glyphicon glyphicon-remove" onclick="operAPP(3)"></span>
+							<span class="tips shutdown">关闭应用</span>
+						</div>
+					</div>
+				</div>
+				<!-- 顶层操作面板 -->
+				<div class="top-operation-panel">
+					<div class="oper-panel-wrap">
+						<div class="panel panel-default explorer">
+							<div class="panel-heading-wrap">
+								<font style="font-size: 12px;font-family: '微软雅黑';">资源管理器</font>
+							</div>
+							<div class="panel-body" style="width: 100%;padding: 0;">
+								<table class="table table-wrap" style="color: white;font-size: 12px;user-select: none;">
+									<thead>
+									  <tr>
+										<th>workspace</th>
+									  </tr>
+									</thead>
+									<tbody>
+									  <tr>
+										<td>我的小札记.txt</td>
+									  </tr>
+									  <tr>
+										<td>小札记操作文档.md</td>
+									  </tr>
+									  <tr>
+										<td>小札记开发日志.md</td>
+									  </tr>
+									  <tr>
+										<td>小札记更新日志.md</td>
+									  </tr>
+									</tbody>
+								  </table>
+							</div>
+						</div>
+						<div class="edit-panel">
+							<textarea id="editInput" class="edit-input-area" oninput="synchronize()" placeholder="在这开始写札记"></textarea>
+							<div class="top-bottom-tips">
+								<span>编辑区</span>
+								<span>行数:0</span>
+								<span class="word-count">0</span>
+							</div>
+						</div>
+						<div class="effect-panel">
+							<textarea id="editPreview" class="edit-preview-area" readonly></textarea>
+							<div class="top-bottom-tips">
+								<span>预览区</span>
+								<span>行数:0</span>
+								<span class="word-count">0</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 底部状态栏 -->
+				<div class="status-bar" style="position:absolute;bottom:0;left:0;height: 20px;width: 100%;background-color: rgb(43, 43, 252);">
+					<div class="status-left" style="height: 100%;">
+						<span class="glyphicon glyphicon-screenshot">小札记</span>
+						<span>administrator</span>
+						<span class="glyphicon glyphicon-log-out"></span>
+					</div>
+					<div class="status-right" style="height: 100%;">
+						<span>*.txt</span>
+						<span id="curTime">time</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<!-- pdf -->
+<script type="text/javascript" src="../frame/jspdf.umd.min.js"></script>
+<!-- 因为bootstrap依赖于jquery.js，所以jquery.js需要最先引入，这是依赖的结果 -->
+<script type="text/javascript" src="../frame/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../frame/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../frame/bootstrap/js/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../frame/bootstrap/js/bootstrap-table-locale-all.min.js"></script>
+<script src="../js/home.js"></script>

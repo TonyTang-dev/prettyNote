@@ -1,0 +1,40 @@
+{
+  "name": "prettynote",
+  "version": "1.0.0",
+  "description": "a pretty editor",
+  "main": "main.js",
+  "scripts": {
+    "start": "chcp 65001 && electron .",
+    "dist": "electron-builder --win --x64"
+  },
+  "keywords": [],
+  "author": "TYF",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^10.0.0",
+    "electron-builder": "^20.0.0"
+  },
+  "build": {
+    "appId": "com.notestudio.app",
+    "productName": "prettyNote",
+    "directories": {
+      "output": "dist"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    }
+  }
+}
