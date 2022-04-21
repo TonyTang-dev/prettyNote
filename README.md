@@ -8,6 +8,7 @@
 3. 当前版本，prettyNotev1.0.0，正在继续维护，敬请期待
 4. 如有优化建议或开发需求，我诚挚希望您给我来邮件353-818-2550@qq.com
 5. 如若使用本开源项目，请先在本地自定义安装electron+node.js依赖
+6. 已集成Editor.md版本的markdown，在此感谢开源Editor.md原作者
 ```cpp
 	//1. 下载安装electron: npm install electron -g
 	//2. node官网：https://nodejs.org/en/
@@ -15,7 +16,7 @@
 
 ## 成果展示
 
-![](resultImg/0420home.png)
+![](resultImg/0421home.png)
 
 ![](resultImg/0420home2.png)
 

@@ -16,6 +16,19 @@ var editPreview = $("#editPreview");
 // 字数统计
 var wordCountdom = $(".word-count");
 
+
+// markdown编辑部分
+var prettyNoteMarkdown;
+
+$(function() {
+    prettyNoteMarkdown = editormd("prettyNoteMarkdown", {
+        width   : "100%",
+        height  : "100%",
+        syncScrolling : "single",
+        path    : "../frame/markdown_editor/lib/"
+    });
+});
+
 $(document).ready(function(){
     /* 设置顶层面板右下角时间 */
     var date = new Date();

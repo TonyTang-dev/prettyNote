@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- 这是为了能正常使用jquery.js又要兼容node.js，所以对冲突关键字进行重命名 -->
 	
+	<link rel="stylesheet" href="../frame/markdown_editor/examples/css/style.css" />
+	<link rel="stylesheet" href="../frame/markdown_editor/css/editormd.css" />
     <link rel="stylesheet" href="../frame/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="../frame/bootstrap/css/bootstrap-table.min.css" />
 	<link rel="stylesheet" href="../frame/bootstrap/css/bootstrap-theme.min.css" />
@@ -198,21 +200,24 @@
 							</div>
 						</div>
 						<div class="edit-panel">
-							<textarea id="editInput" class="edit-input-area" oninput="synchronize()" placeholder="在这开始写札记"></textarea>
+							<div id="prettyNoteMarkdown" style="z-index: 1;">
+								<textarea style="display:none;z-index: 1;"></textarea>
+							</div>
+							<!-- <textarea id="editInput" class="edit-input-area" oninput="synchronize()" placeholder="在这开始写札记"></textarea>
 							<div class="top-bottom-tips">
 								<span>编辑区</span>
 								<span>行数:0</span>
 								<span class="word-count">0</span>
-							</div>
+							</div> -->
 						</div>
-						<div class="effect-panel">
+						<!-- <div class="effect-panel">
 							<textarea id="editPreview" class="edit-preview-area" readonly></textarea>
 							<div class="top-bottom-tips">
 								<span>预览区</span>
 								<span>行数:0</span>
 								<span class="word-count">0</span>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<!-- 底部状态栏 -->
@@ -243,3 +248,5 @@
 <script type="text/javascript" src="../frame/bootstrap/js/bootstrap-table.min.js"></script>
 <script type="text/javascript" src="../frame/bootstrap/js/bootstrap-table-locale-all.min.js"></script>
 <script src="../js/home.js"></script>
+<!-- markdown -->
+<script src="../frame/markdown_editor/editormd.js"></script>

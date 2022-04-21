@@ -5,6 +5,13 @@
 
 ## 开发日志
 
+0421:
+
+1、集成Editor.md版本markdown，感谢Editor.md原作者
+
+![](resultImg/0421home.png)
+
+
 0420:
 
 1、添加日期配置，优化界面配置，界面主题配置
