@@ -1,5 +1,6 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const path = require("path");
+const fs = require("fs");
 
 /* 全局变量 */
 // 窗口实例
@@ -60,6 +61,20 @@ app.on('ready',()=>{
         y = mainWindow.getPosition()[1];
         mainWindow.setPosition(x+arg[0], y+arg[1]);
     });
+
+    /* 文件操作 */
+    // 写入文件
+    ipcMain.on('writeFile', function(event, arg) {
+        // arg是从渲染进程返回来的数据
+        fs.writeFile("C:\\Users\\Administrator\\Desktop\\text.txt", arg, "utf8",(err)=>{
+          if(err){
+            console.log("write failed!");
+          }else {
+            console.log("write success!");
+          }
+        })
+    });
+
 
 
     // mainWindow.webContents.openDevTools({ mode: 'bottom' }); // 控制台开关

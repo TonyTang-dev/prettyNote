@@ -147,6 +147,7 @@ function synchronize(){
     wordCountdom.text(inputContent.length);
 }
 
+var splitTitle = "";
 /* 用户点击导出 */
 function exportFile(){
     // pdf格式
@@ -158,10 +159,20 @@ function exportFile(){
     // 文档实例
     var doc=new jspdf.jsPDF(options);
 
-    var splitTitle = doc.splitTextToSize(editInput.val(), 780);
-    doc.setFont("simkai","normal");
+    doc.addFileToVFS("simkai.ttf",font);
+    doc.addFont("simkai.ttf","simkai","normal");
+    // console.log(doc.getFontList());
+    doc.setFont("simkai");
     doc.setFontSize(12);
-    doc.text(30, 30, splitTitle);
+
+    splitTitle = doc.splitTextToSize(editInput.val(), 530);
+    doc.text(30, 40, splitTitle);
 
     doc.save("test.pdf");
+
+
+    // 写入txt
+    window.ipcRenderer.send("writeFile", editInput.val());
+
+    splitTitle = "";
 }
