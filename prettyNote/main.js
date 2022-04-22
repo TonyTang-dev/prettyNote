@@ -66,7 +66,7 @@ app.on('ready',()=>{
     // 写入文件
     ipcMain.on('writeFile', function(event, arg) {
         // arg是从渲染进程返回来的数据
-        fs.writeFile("C:\\Users\\Administrator\\Desktop\\text.txt", arg, "utf8",(err)=>{
+        fs.writeFile("C:\\Users\\Administrator\\Desktop\\text.md", arg, "utf8",(err)=>{
           if(err){
             console.log("write failed!");
           }else {

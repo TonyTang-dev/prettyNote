@@ -164,28 +164,31 @@ var splitTitle = "";
 /* 用户点击导出 */
 function exportFile(){
     // pdf格式
-    var options = {
-        orientation: 'p',
-        unit: 'pt',
-        format: [594.3,840.51]
-    }
+    // var options = {
+    //     orientation: 'p',
+    //     unit: 'pt',
+    //     format: [594.3,840.51]
+    // }
     // 文档实例
-    var doc=new jspdf.jsPDF(options);
+    // var doc=new jspdf.jsPDF(options);
 
-    doc.addFileToVFS("simkai.ttf",font);
-    doc.addFont("simkai.ttf","simkai","normal");
-    // console.log(doc.getFontList());
-    doc.setFont("simkai");
-    doc.setFontSize(12);
+    // doc.addFileToVFS("simkai.ttf",font);
+    // doc.addFont("simkai.ttf","simkai","normal");
+    // // console.log(doc.getFontList());
+    // doc.setFont("simkai");
+    // doc.setFontSize(12);
 
-    splitTitle = doc.splitTextToSize(editInput.val(), 530);
-    doc.text(30, 40, splitTitle);
+    // splitTitle = doc.splitTextToSize(editInput.val(), 530);
+    // doc.text(30, 40, splitTitle);
 
-    doc.save("test.pdf");
+    // doc.save("test.pdf");
 
 
     // 写入txt
-    window.ipcRenderer.send("writeFile", editInput.val());
+    var res = confirm("确定导出md文件吗？");
+    if(a == true){
+        window.ipcRenderer.send("writeFile", this.prettyNoteMarkdown.getMarkdown());
+    }
 
     splitTitle = "";
 }

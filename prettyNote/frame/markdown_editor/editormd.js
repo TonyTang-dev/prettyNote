@@ -92,9 +92,9 @@
         mode                 : "gfm",          //gfm or markdown
         name                 : "",             // Form element name
         value                : "",             // value for CodeMirror, if mode not gfm/markdown
-        theme                : "night",             // Editor.md self themes, before v1.5.0 is CodeMirror theme, default empty
+        theme                : "dark",             // Editor.md self themes, before v1.5.0 is CodeMirror theme, default empty
         editorTheme          : "night",      // Editor area, this is CodeMirror theme at v1.5.0
-        previewTheme         : "midnight",             // Preview area theme, default empty
+        previewTheme         : "night",             // Preview area theme, default empty
         markdown             : "",             // Markdown source code
         appendMarkdown       : "># 开始我的小札记",             // if in init textarea value not empty, append markdown to textarea
         width                : "100%",
